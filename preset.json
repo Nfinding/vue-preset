@@ -4,15 +4,9 @@
     "@vue/cli-plugin-babel": {},
     "@vue/cli-plugin-eslint": {
       "config": "standard",
-      "lintOn": [
-        "save"
-      ]
+      "lintOn": ["save", "commit"]
     },
-    "@vue/cli-plugin-unit-mocha": {},
-    "@vue/cli-plugin-vuex": {},
-    "@vue/cli-plugin-router": {
-      "prompts":true
-    }
+    "@vue/cli-plugin-unit-mocha": {}
   },
-  "cssPreprocessor": "node-sass"
+  "cssPreprocessor": "sass"
 }

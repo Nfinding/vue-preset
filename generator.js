@@ -19,25 +19,41 @@ module.exports = (api, options, rootOptions) => {
   }
 
   if (options.project === 'base-web') { 
-    // 2.拷贝文件并传递变量。例如：InputOptions对象中的属性/变量会覆盖掉该./template/base-web路劲下html,js,json等文件对应的属性/变量
+    // 2.拷贝文件并传递变量。例如：InputOptions对象中的属性/变量会覆盖掉该./template/base-web路径下html,js,json等文件对应的属性/变量
+    // 3.如果该./template/pc-web 路径下的内容为空，会使用vue-cli中提供的默认的模板
+    // 4.如果该 render 没有执行，会使用 vue-cli 中提供的默认的模板
     api.render('./template/base-web', { InputOptions:{ ...options} })
   }
 
-  if (options.project === 'pc-web') { 
-    // 3.如果该./template/pc-web 路径下的内容为空，会使用vue-cli中提供的默认的模板 
-    api.render('./template/pc-web', { InputOptions:{ ...options} })
-  }
+   // 安装 vuex
+   if (options.vuex) {
+    api.extendPackage({
+      dependencies: {
+        vuex: '^3.1.2'
+      }
+    });
 
-  if (options.project === 'mo-web') { 
-    // 4.如果该 render 没有执行，会使用 vue-cli 中提供的默认的模板 
-    // api.render('./template/mo-web', { InputOptions:{ ...options} })
+     api.render({ './src/vuex/index.js': './template/vue-web/src/store/index.js'},{ InputOptions:{ ...options} });
   }
-
+   // 安装 vue-router
+   if (options.vueRouter) {
+    api.extendPackage({
+      dependencies: {
+        "vue-router": "^3.1.5"
+      }
+    });
+    api.render({ './src/router/index.js': './template/vue-web/src/router/index.js' },{ InputOptions:{ ...options} })
+     
+    if (options.historyRouter) {
+      rootOptions.routerHistoryMode = true
+    }
+  }
   // 3.修改 `package.json` 里的字段
   api.extendPackage({
     // 4.添加第三库的依赖
     dependencies: {
       // 'normalize.css': '^8.0.1'
+      "axios": "^0.19.2",
     },
     // 4.添加第三库的依赖
     devDependencies: {

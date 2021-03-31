@@ -11,8 +11,6 @@ module.exports = [
     choices: [
       { name: 'vue-web', value: 'vue-web' },
       { name: 'base-web', value: 'base-web' },
-      { name: 'pc-web', value: 'pc-web' },
-      { name: 'mo-web', value: 'mo-web' }
     ],
     default: 'vue-web',
   },
@@ -24,17 +22,22 @@ module.exports = [
   },
   {
     type: 'confirm',
-    name: 'chooseRouterMode',
-    // 该项目唯一安装的依赖 chalk; 目的是使用控制台输出 chalk.yellow('xxx') xxx 文字有颜色
-    // ? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n)
-    message: `是否使用history路由 ${chalk.yellow(`(需要适当的服务器设置，以便在生产环境中进行索引回退！)`)}`,
-    description: `Using History API, the URLs don't need  '#' character.`
+    name: 'vuex',
+    message: ` ${chalk.yellow(`(是否引入vuex?)`)}`,
+    description:  `${chalk.green(`(数据管理仓库！)`)}`
   },
   {
     type: 'confirm',
-    name: 'chooseTs',
+    name: 'vueRouter',
     // 该项目唯一安装的依赖 chalk; 目的是使用控制台输出 chalk.yellow('xxx') xxx 文字有颜色
-    message: '是否引入ts语法',
-    description: `${chalk.green(`(编译时语法提示！)`)}`
+    // ? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n)
+    message: `是否使用路由 ${chalk.yellow(`(需要适当的服务器设置，以便在生产环境中进行索引回退！)`)}`,
+  },
+  {
+    when: prev => prev.vueRouter,
+    type: 'confirm',
+    name: 'historyRouter',
+    message: '是否引入history路由',
+    description: `Using History API, the URLs don't need  '#' character.`
   }
 ]

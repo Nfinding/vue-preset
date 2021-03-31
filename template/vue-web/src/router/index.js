@@ -1,12 +1,15 @@
-<%_ if (!InputOptions.chooseRouterMode) { _%>
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
+
 const router = new VueRouter({
-  mode: 'hash',
+  <%_ if (!InputOptions.historyRouter) { _%>
+    mode: 'hash',
+  <%_ } else { _%>
+    mode: 'history',
+  <%_ } _%>
   scrollBehavior: () => ({ y: 0 }),
   routes:[
   {
@@ -26,5 +29,3 @@ const router = new VueRouter({
 })
 
   export default router
-<%_ } else { _%> 
-<%_ } _%> 

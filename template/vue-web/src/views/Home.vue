@@ -2,9 +2,9 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <%_ if (!rootOptions.bare) { _%>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Button msg="构建自己的vue模版"/>
     <%_ } else { _%>
-    <h1>Welcome to Your Vue.js App</h1>
+    <h1>Vue-Template已搭建完成，赶紧码起来！</h1>
     <%_ } _%>
   </div>
 </template>
@@ -12,11 +12,11 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Button from '@/components/Buttons.vue'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Button
   }
 }
 </script>

@@ -11,6 +11,13 @@ module.exports = (api, options, rootOptions) => {
   console.log(`Your choice is ${options.project}`)
   console.log(`Your input is ${options.projectName}`)
 
+  // 删除 vue-cli3 默认的 /src 和 /public 目录
+  // api.render(files => {
+  //   Object.keys(files)
+  //     .filter(path => path.startsWith('src/') || path.startsWith('public/'))
+  //     .forEach(path => delete files[path])
+  // })
+
   // 1.判断控制台用户的输入
   if (options.project === 'vue-web') {  
     // render函数把该路径下的 ./template/vue-web 文件拷贝到默认的vue项目中。
@@ -53,6 +60,7 @@ module.exports = (api, options, rootOptions) => {
     // 4.添加第三库的依赖
     dependencies: {
       // 'normalize.css': '^8.0.1'
+      "qs":"^6.8.0",
       "axios": "^0.19.2",
     },
     // 4.添加第三库的依赖
